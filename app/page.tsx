@@ -1,95 +1,146 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client';
 
-export default function Home() {
+import Button from '@/components/Button';
+import Table from '@/components/table/Table';
+import TableCell from '@/components/table/TableCell';
+import TableHeader from '@/components/table/TableHeader';
+import TableHeaderCell from '@/components/table/TableHeaderCell';
+import TableRow from '@/components/table/TableRow';
+import TableIconButton from '@/components/table/TableIconButton';
+import TableActionsCell from '@/components/table/TableActionsCell';
+import AddUserModal from '@/components/modals/AddUserModal';
+import EditUserModal from '@/components/modals/EditUserModal';
+import DeleteUserModal from '@/components/modals/DeleteUserModal';
+
+import styles from './page.module.scss';
+
+import { useEffect, useState, useRef } from 'react';
+
+const getUsers = async () => {
+  try {
+    const response = await fetch('https://jsonplaceholder.typicode.com/users');
+    const users: User[] = await response.json();
+    return users;
+  } catch {
+    throw new Error('Failed to fetch users');
+  }
+};
+
+export default function Page() {
+  const [users, setUsers] = useState<User[]>([]);
+  const [selectedUser, setSelectedUser] = useState<User | null>(null);
+
+  const addUserModalRef = useRef<HTMLDialogElement>(null);
+  const editUserModalRef = useRef<HTMLDialogElement>(null);
+  const deleteUserModalRef = useRef<HTMLDialogElement>(null);
+
+  const openEditUserModal = (user: User) => {
+    setSelectedUser(user);
+    editUserModalRef.current?.showModal();
+  };
+
+  const openDeleteUserModal = (user: User) => {
+    setSelectedUser(user);
+    deleteUserModalRef.current?.showModal();
+  };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const users = await getUsers();
+      setUsers(users);
+    };
+    fetchData();
+  }, []);
+
+  const addUser = async (user: Omit<User, 'id'>) => {
+    try {
+      const response = await fetch('https://jsonplaceholder.typicode.com/users', {
+        method: 'POST',
+        body: JSON.stringify(user),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      });
+      const addedUser = await response.json();
+      setUsers([...users, addedUser]);
+      return user;
+    } catch {
+      throw new Error('Failed to add user');
+    }
+  };
+
+  const editUser = async (user: User) => {
+    try {
+      const response = await fetch(`https://jsonplaceholder.typicode.com/users/${user.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(user),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      });
+      const updatedUser = await response.json();
+      setUsers(users.map((user) => user.id === updatedUser.id ? updatedUser : user));
+      editUserModalRef.current?.close();
+      return updatedUser;
+    } catch {
+      throw new Error('Failed to edit user');
+    }
+  };
+
+
+  const deleteUser = async (id: number) => {
+    try {
+      const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
+        method: 'DELETE',
+      });
+      setUsers(users.filter((user) => user.id !== id));
+      deleteUserModalRef.current?.close();
+      return response;
+    } catch {
+      throw new Error('Failed to delete user');
+    }
+  };
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <main className="main">
+      <div className={styles['headline-container']}>
+        <h1 className="heading-1">User list</h1>
+        <Button onClick={() => addUserModalRef.current?.showModal()}>Add user</Button>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      <Table>
+        <TableHeader>
+          <TableHeaderCell alignEnd>ID</TableHeaderCell>
+          <TableHeaderCell>Name</TableHeaderCell>
+          <TableHeaderCell>Username</TableHeaderCell>
+          <TableHeaderCell>Email</TableHeaderCell>
+          <TableHeaderCell>Actions</TableHeaderCell>
+        </TableHeader>
+        <tbody>
+          {users.map((user) => (
+            <TableRow key={user.id}>
+              <TableCell alignEnd>{user.id}</TableCell>
+              <TableCell>{user.name}</TableCell>
+              <TableCell>{user.username}</TableCell>
+              <TableCell>{user.email}</TableCell>
+              <TableActionsCell>
+                <TableIconButton label="Edit" onClick={() => openEditUserModal(user)} icon="pencil" />
+                <TableIconButton label="Delete" onClick={() => openDeleteUserModal(user)} icon="trash" />
+              </TableActionsCell>
+            </TableRow>
+          ))}
+        </tbody>
+      </Table>
+      <AddUserModal ref={addUserModalRef} onConfirm={addUser} />
+      <EditUserModal 
+        ref={editUserModalRef}
+        user={selectedUser!}
+        onConfirm={editUser}
+      />
+      <DeleteUserModal 
+        ref={deleteUserModalRef}
+        userName={selectedUser?.name || ''}
+        onConfirm={() => deleteUser(selectedUser!.id)}
+      />
     </main>
-  )
-}
+  );
+};

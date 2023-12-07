@@ -1,0 +1,39 @@
+@import '@/styles/mixins.scss';
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: .5em;
+  border-radius: 4px;
+  padding: 8px 16px;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / .05);
+  transition: filter .2s;
+  will-change: filter;
+  
+  &.color-primary {
+    border: 1px solid #042077;
+    background-image: linear-gradient(to bottom, #003DFF, #022EB9);
+    color: #fff;
+  }
+
+  &.color-secondary {
+    border: 1px solid #d6d6e7;
+    background-image: linear-gradient(to bottom, #fff, #f5f5fa);
+    color: #23263b;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      filter: brightness(.95);
+    }
+  }
+
+  &:active {
+    filter: brightness(.9);
+  }
+
+  &:focus-visible {
+    @include focus-styles;
+  }
+}

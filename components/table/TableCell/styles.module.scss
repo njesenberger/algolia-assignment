@@ -1,0 +1,8 @@
+.table-cell {
+	padding: 12px;
+  vertical-align: middle;
+
+  &.align-end {
+    text-align: end;
+  }
+}

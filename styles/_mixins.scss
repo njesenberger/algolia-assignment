@@ -1,0 +1,18 @@
+@use 'sass:math';
+
+@function responsive-font-size($min-font-size, $max-font-size, $min-width: 375px, $max-width: 1440px) {
+	$min-width: math.div($min-width, 16px);
+	$max-width: math.div($max-width, 16px);
+	$slope: strip-unit(math.div($max-font-size - $min-font-size, $max-width - $min-width));
+	$y-axis-intersection: -1 * $min-width * $slope + $min-font-size;
+	@return clamp(#{$min-font-size}, #{$y-axis-intersection} + #{$slope} * 100vw, #{$max-font-size});
+}
+
+@function strip-unit($number) {
+  @return math.div($number, ($number * 0 + 1));
+}
+
+@mixin focus-styles {
+  outline: 2px solid #003DFF;
+  outline-offset: 2px;
+}

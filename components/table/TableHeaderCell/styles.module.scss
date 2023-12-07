@@ -1,0 +1,9 @@
+.table-header-cell {
+	padding: 12px;
+	vertical-align: middle;
+	font-weight: var(--font-weight-semi-bold);
+
+	&.align-end {
+		text-align: end;
+	}
+}

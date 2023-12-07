@@ -1,0 +1,23 @@
+.text-field-label {
+  display: block;
+  font-size: .75em;
+  font-weight: var(--font-weight-medium);
+  margin-bottom: .25em;
+  color: #23263b;
+}
+
+.text-field-input {
+  border: 1px solid #d6d6e7;
+  border-radius: 4px;
+  padding: 8px 8px;
+  width: 100%;
+  transition: border-color .2s;
+
+  &:focus-visible {
+    border-color: #003DFF;
+  }
+
+  &::placeholder {
+    color: #d6d6e7;
+  }
+}
