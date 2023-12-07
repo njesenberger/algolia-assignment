@@ -17,10 +17,10 @@ body {
 	color: transparent;
 
 	&.heading-1 {
-		font-size: responsive-font-size(1.25em, 1.5em);
+		font-size: responsive-font-size(20px, 24px);
 	}
 
 	&.heading-2 {
-		font-size: responsive-font-size(1em, 1.25em);
+		font-size: responsive-font-size(16px, 20px);
 	}
 }

@@ -1,7 +1,9 @@
+@import '@/styles/mixins';
+
 .body {
   margin: 0 auto;
-	padding: 80px 24px 3em;
-	max-width: 75em;
+	padding: 80px 24px em(48px);
+	max-width: em(1200px);
 	min-height: 100vh;
 	min-height: 100dvh;
 	background-color: var(--neutral-color-2);

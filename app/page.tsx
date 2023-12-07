@@ -35,6 +35,10 @@ export default function Page() {
   const editUserModalRef = useRef<HTMLDialogElement>(null);
   const deleteUserModalRef = useRef<HTMLDialogElement>(null);
 
+  const openAddUserModal = () => {
+    addUserModalRef.current?.showModal();
+  };
+
   const openEditUserModal = (user: User) => {
     setSelectedUser(user);
     editUserModalRef.current?.showModal();
@@ -106,7 +110,7 @@ export default function Page() {
     <main className="main">
       <div className={styles['headline-container']}>
         <h1 className="heading-1">User list</h1>
-        <Button onClick={() => addUserModalRef.current?.showModal()}>Add user</Button>
+        <Button onClick={openAddUserModal}>Add user</Button>
       </div>
       <Table>
         <TableHeader>

@@ -1,6 +1,13 @@
 @use 'sass:math';
 
 @function responsive-font-size($min-font-size, $max-font-size, $min-width: 375px, $max-width: 1440px) {
+	@if (unit($min-font-size) != 'px') or (unit($max-font-size) != 'px') {
+		@error 'Values #{$min-font-size} and #{$max-font-size} must have `px` unit.';
+	}
+	
+	$min-font-size: em($min-font-size);
+	$max-font-size: em($max-font-size);
+
 	$min-width: math.div($min-width, 16px);
 	$max-width: math.div($max-width, 16px);
 	$slope: strip-unit(math.div($max-font-size - $min-font-size, $max-width - $min-width));
@@ -12,7 +19,15 @@
   @return math.div($number, ($number * 0 + 1));
 }
 
+@function em($pixels) {
+  @if not (unit($pixels) == 'px') {
+    @error 'Value #{$pixels} must have `px` unit.';
+  }
+  
+  @return $pixels / 16px * 1em;
+}
+
 @mixin focus-styles {
   outline: 2px solid var(--primary-color-1);
-  outline-offset: 2px;
+  outline-offset: var(--spacing-1);
 }

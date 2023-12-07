@@ -1,4 +1,4 @@
-@import '@/styles/mixins.scss';
+@import '@/styles/mixins';
 
 .table-icon-button {
   display: inline-flex;
@@ -6,7 +6,7 @@
   align-items: center;
   border: 1px solid var(--neutral-color-3);
   border-radius: 4px;
-  padding: 8px;
+  padding: var(--spacing-3);
   background-image: var(--neutral-gradient-1);
   box-shadow: var(--box-shadow-1);
   transition-property: transform, filter;

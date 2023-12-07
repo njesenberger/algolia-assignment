@@ -1,5 +1,5 @@
 .fields-container {
   display: grid;
   grid-template-columns: 360px;
-  gap: 1em 8px;
+  gap: var(--text-spacing-6) var(--spacing-3);
 }

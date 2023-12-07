@@ -15,7 +15,7 @@ const AddUserModal = forwardRef<HTMLDialogElement, ModalProps>(
 
     // @ts-ignore
     const handleSubmit = async (formData) => {
-      const email: string = formData.get('email');
+      const email = formData.get('email');
       const name = formData.get('name');
       const username = formData.get('username');
       await onConfirm({ username, name, email });
@@ -28,7 +28,7 @@ const AddUserModal = forwardRef<HTMLDialogElement, ModalProps>(
         title="Add user"
         ref={ref}
         // @ts-ignore
-        onClose={() => formRef.current?.reset()}
+        onClose={() => formRef.current.reset()}
         {...rest}
         buttons={
           <>

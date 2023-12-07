@@ -3,23 +3,33 @@
 @font-face {
 	font-display: block;
 	font-family: 'Sora';
-	src: local('Sora-Regular'), url('/fonts/sora/sora-regular.ttf') format('truetype');
+	src: local('Sora-SemiBold'), url('/fonts/sora/sora-semi-bold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+}
+
+/* Inter */
+
+@font-face {
+	font-display: block;
+	font-family: 'Inter';
+	src: local('Inter-Regular'), url('/fonts/inter/inter-regular.ttf') format('truetype');
 	font-weight: 400;
 	font-style: normal;
 }
 
 @font-face {
 	font-display: block;
-	font-family: 'Sora';
-	src: local('Sora-Medium'), url('/fonts/sora/sora-medium.ttf') format('truetype');
+	font-family: 'Inter';
+	src: local('Inter-Medium'), url('/fonts/inter/inter-medium.ttf') format('truetype');
 	font-weight: 500;
 	font-style: normal;
 }
 
 @font-face {
 	font-display: block;
-	font-family: 'Sora';
-	src: local('Sora-SemiBold'), url('/fonts/sora/sora-semi-bold.ttf') format('truetype');
+	font-family: 'Inter';
+	src: local('Inter-SemiBold'), url('/fonts/inter/inter-semi-bold.ttf') format('truetype');
 	font-weight: 600;
 	font-style: normal;
 }

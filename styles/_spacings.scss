@@ -1,0 +1,21 @@
+$spacings: (
+  2px,
+  4px,
+  6px,
+  8px,
+  10px,
+  12px,
+  14px,
+  16px,
+  20px,
+  24px,
+  28px,
+  32px,
+);
+
+:root {
+  @for $i from 1 through length($spacings) {
+    --spacing-#{$i}: #{nth($spacings, $i)};
+    --text-spacing-#{$i}: #{em(nth($spacings, $i))};
+  }
+}

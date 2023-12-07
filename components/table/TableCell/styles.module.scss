@@ -1,5 +1,5 @@
 .table-cell {
-	padding: 12px;
+	padding: var(--spacing-5);
   vertical-align: middle;
 
   &.align-end {

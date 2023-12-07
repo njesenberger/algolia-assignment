@@ -1,7 +1,9 @@
+@import '@/styles/mixins';
+
 .text-field-label {
   display: block;
-  padding-bottom: .25em;
-  font-size: .75em;
+  padding-bottom: var(--spacing-2);
+  font-size: em(14px);
   font-weight: var(--font-weight-medium);
   color: var(--neutral-color-4);
 }
@@ -9,7 +11,7 @@
 .text-field-input {
   border: 1px solid var(--neutral-color-3);
   border-radius: 4px;
-  padding: 8px 8px;
+  padding: var(--spacing-4);
   width: 100%;
   transition: border-color .2s;
 
