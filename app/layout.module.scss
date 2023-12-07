@@ -4,8 +4,8 @@
 	max-width: 75em;
 	min-height: 100vh;
 	min-height: 100dvh;
-	background-color: #fcfcfd;
-	color: #23263b;
+	background-color: var(--neutral-color-2);
+	color: var(--neutral-color-4);
 	font-feature-settings: 'tnum';
 	font-variant-numeric: tabular-nums;
 }

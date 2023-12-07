@@ -2,12 +2,13 @@
 
 import Button from '@/components/Button';
 import Table from '@/components/table/Table';
-import TableCell from '@/components/table/TableCell';
 import TableHeader from '@/components/table/TableHeader';
 import TableHeaderCell from '@/components/table/TableHeaderCell';
+import TableBody from '@/components/table/TableBody';
 import TableRow from '@/components/table/TableRow';
-import TableIconButton from '@/components/table/TableIconButton';
+import TableCell from '@/components/table/TableCell';
 import TableActionsCell from '@/components/table/TableActionsCell';
+import TableIconButton from '@/components/table/TableIconButton';
 import AddUserModal from '@/components/modals/AddUserModal';
 import EditUserModal from '@/components/modals/EditUserModal';
 import DeleteUserModal from '@/components/modals/DeleteUserModal';
@@ -115,7 +116,7 @@ export default function Page() {
           <TableHeaderCell>Email</TableHeaderCell>
           <TableHeaderCell>Actions</TableHeaderCell>
         </TableHeader>
-        <tbody>
+        <TableBody>
           {users.map((user) => (
             <TableRow key={user.id}>
               <TableCell alignEnd>{user.id}</TableCell>
@@ -128,7 +129,7 @@ export default function Page() {
               </TableActionsCell>
             </TableRow>
           ))}
-        </tbody>
+        </TableBody>
       </Table>
       <AddUserModal ref={addUserModalRef} onConfirm={addUser} />
       <EditUserModal 

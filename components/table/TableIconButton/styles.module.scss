@@ -4,15 +4,14 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid #ebebf3;
-  border: 1px solid #d6d6e7;
+  border: 1px solid var(--neutral-color-3);
   border-radius: 4px;
   padding: 8px;
-  background-color: #f5f5fa;
-  background-image: linear-gradient(to bottom, #fff, #f5f5fa);
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / .05);
-  transition: filter .2s;
-  will-change: filter;
+  background-image: var(--neutral-gradient-1);
+  box-shadow: var(--box-shadow-1);
+  transition-property: transform, filter;
+  transition-duration: .2s;
+  will-change: transform, filter;
 
   @media (hover: hover) {
     &:hover {
@@ -21,6 +20,7 @@
   }
 
   &:active {
+    transform: scale(.96);
     filter: brightness(.9);
   }
 

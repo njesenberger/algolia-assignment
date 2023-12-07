@@ -1,0 +1,6 @@
+:root {
+  --neutral-gradient-1: linear-gradient(to bottom, var(--neutral-color-1), var(--neutral-color-2));
+
+  --primary-gradient-1: linear-gradient(to bottom, var(--primary-color-1), var(--primary-color-2));
+  --primary-gradient-2: linear-gradient(to bottom, var(--neutral-color-4), var(--primary-color-3));
+}

@@ -8,20 +8,19 @@ body {
 	font-family: var(--font-family-body);
 }
 
-.heading-1 {
-	background-image: linear-gradient(to bottom, #23263b, #042077);
-	background-clip: text;
-	font-family: var(--font-family-heading);
-	font-size: responsive-font-size(1.25em, 1.5em);
-	font-weight: var(--font-weight-semi-bold);
-	color: transparent;
-}
-
+.heading-1,
 .heading-2 {
 	background-image: linear-gradient(to bottom, #23263b, #042077);
 	background-clip: text;
 	font-family: var(--font-family-heading);
-	font-size: responsive-font-size(1em, 1.25em);
 	font-weight: var(--font-weight-semi-bold);
 	color: transparent;
+
+	&.heading-1 {
+		font-size: responsive-font-size(1.25em, 1.5em);
+	}
+
+	&.heading-2 {
+		font-size: responsive-font-size(1em, 1.25em);
+	}
 }

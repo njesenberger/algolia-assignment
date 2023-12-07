@@ -1,23 +1,23 @@
 .text-field-label {
   display: block;
+  padding-bottom: .25em;
   font-size: .75em;
   font-weight: var(--font-weight-medium);
-  margin-bottom: .25em;
-  color: #23263b;
+  color: var(--neutral-color-4);
 }
 
 .text-field-input {
-  border: 1px solid #d6d6e7;
+  border: 1px solid var(--neutral-color-3);
   border-radius: 4px;
   padding: 8px 8px;
   width: 100%;
   transition: border-color .2s;
 
   &:focus-visible {
-    border-color: #003DFF;
+    border-color: var(--primary-color-1);
   }
 
   &::placeholder {
-    color: #d6d6e7;
+    color: var(--neutral-color-3);
   }
 }

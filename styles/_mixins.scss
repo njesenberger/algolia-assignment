@@ -13,6 +13,6 @@
 }
 
 @mixin focus-styles {
-  outline: 2px solid #003DFF;
+  outline: 2px solid var(--primary-color-1);
   outline-offset: 2px;
 }

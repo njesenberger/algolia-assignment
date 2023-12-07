@@ -1,5 +1,4 @@
 .table-header {
-  border-bottom: 1px solid #d6d6e7;
-  background-color: #f5f5fa;
-  background-image: linear-gradient(to bottom, #fff, #f5f5fa);
+  border-bottom: 1px solid var(--neutral-color-3);
+  background-image: var(--neutral-gradient-1);
 }

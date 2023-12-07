@@ -1,14 +1,14 @@
 .table-row {
-	background-color: #fff;
+	background-color: var(--neutral-color-1);
 	transition: background-color .2s;
 
 	&:not(:last-child) {
-		border-bottom: 1px solid #f5f5fa;
+		border-bottom: 1px solid var(--neutral-color-2);
 	}
 
 	@media (hover: hover) {
 		&:hover {
-			background-color: #f5f5fa;
+			background-color: var(--neutral-color-2);
 		}
 	}
 }
