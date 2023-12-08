@@ -11,7 +11,7 @@ type Ref = {
 } | null;
 
 interface ModalProps extends React.HTMLAttributes<HTMLDialogElement> {
-  onConfirm (user: Omit<User, 'id'>): Promise<void>;
+  onConfirm (user: Omit<User, 'id'>): Promise<Omit<User, "id">>;
 }
 
 const AddUserModal = forwardRef<Ref, ModalProps>(
