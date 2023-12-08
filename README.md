@@ -4,7 +4,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Launching the project
 
-First, clone the project, then inside the project folder:
+After cloning the project, inside the project folder:
 
 ```bash
 # Install dependencies
