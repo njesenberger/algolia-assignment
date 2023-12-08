@@ -71,6 +71,7 @@ const EditUserModal = forwardRef<Ref, ModalProps>(
             value={editedUser?.name || ''}
             onChange={(e) => setEditedUser({ ...editedUser, name: e.target.value })}
             placeholder="John Doe"
+            spellCheck="false"
             required
             autoFocus
           />
@@ -79,6 +80,7 @@ const EditUserModal = forwardRef<Ref, ModalProps>(
             value={editedUser?.username || ''}
             onChange={(e) => setEditedUser({ ...editedUser, username: e.target.value })}
             placeholder="johndoe"
+            spellCheck="false"
             required
           />
           <TextField

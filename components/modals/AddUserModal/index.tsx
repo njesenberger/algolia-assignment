@@ -63,9 +63,28 @@ const AddUserModal = forwardRef<Ref, ModalProps>(
           action={handleSubmit}
           ref={formRef}
         >
-          <TextField label="Name" name="name" autoFocus placeholder="John Doe" required />
-          <TextField label="Username" name="username" placeholder="johndoe" required />
-          <TextField label="Email" name="email" type="email" placeholder="john@doe.com" required />
+          <TextField 
+            label="Name" 
+            name="name" 
+            placeholder="John Doe"
+            spellCheck="false"
+            required
+            autoFocus 
+          />
+          <TextField 
+            label="Username" 
+            name="username" 
+            placeholder="johndoe" 
+            spellCheck="false"
+            required
+          />
+          <TextField 
+            label="Email" 
+            name="email" 
+            type="email" 
+            placeholder="john@doe.com" 
+            required
+          />
         </form>
       </Modal>
     );

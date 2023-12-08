@@ -1,5 +1,6 @@
 'use client';
 
+import Headline from '@/components/Headline';
 import Button from '@/components/Button';
 import Table from '@/components/table/Table';
 import TableHeader from '@/components/table/TableHeader';
@@ -14,8 +15,6 @@ import EditUserModal from '@/components/modals/EditUserModal';
 import DeleteUserModal from '@/components/modals/DeleteUserModal';
 
 import gsap from 'gsap';
-
-import styles from './page.module.scss';
 
 import { useEffect, useState, useRef } from 'react';
 
@@ -148,10 +147,9 @@ export default function Page() {
 
   return (
     <main className="main">
-      <div className={styles['headline-container']}>
-        <h1 className="heading-1">User list</h1>
+      <Headline title="User list">
         <Button onClick={openAddUserModal}>Add user</Button>
-      </div>
+      </Headline>
       <Table>
         <TableHeader>
           <TableHeaderCell alignEnd>ID</TableHeaderCell>
