@@ -1,8 +1,12 @@
 import styles from './styles.module.scss';
 
-export default function TableRow({ children }: { children: React.ReactNode }) {
+interface TableRowProps extends React.HTMLAttributes<HTMLTableRowElement> {
+  children: React.ReactNode;
+}
+
+export default function TableRow({ children, ...rest }: TableRowProps) {
   return (
-    <tr className={styles['table-row']}>
+    <tr className={styles['table-row']} {...rest}>
       {children}
     </tr>
   );

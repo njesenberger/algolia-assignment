@@ -13,6 +13,8 @@ import AddUserModal from '@/components/modals/AddUserModal';
 import EditUserModal from '@/components/modals/EditUserModal';
 import DeleteUserModal from '@/components/modals/DeleteUserModal';
 
+import gsap from 'gsap';
+
 import styles from './page.module.scss';
 
 import { useEffect, useState, useRef } from 'react';
@@ -57,6 +59,35 @@ export default function Page() {
     fetchData();
   }, []);
 
+  const animateEditUser = (id: number, callback: () => void) => {
+    const userRow = document.querySelector(`#user-${id}`);
+    gsap.to(userRow, {
+      backgroundColor: '#042077',
+      duration: 0.2,
+      clearProps: 'all',
+      onComplete: () => {
+        callback();
+        gsap.to(userRow, {
+          duration: 0.2,
+          backgroundColor: '#003',
+          clearProps: 'all',
+        });
+      },
+    });
+  };
+
+  const animateDeleteUser = (id: number, callback: () => void) => {
+    const userRow = document.querySelector(`#user-${id}`);
+    gsap.to(userRow, {
+      translateX: '100%',
+      opacity: 0,
+      duration: 0.8,
+      onComplete: () => {
+        callback();
+      },
+    });
+  };
+
   const addUser = async (user: Omit<User, 'id'>) => {
     try {
       const response = await fetch('https://jsonplaceholder.typicode.com/users', {
@@ -84,8 +115,12 @@ export default function Page() {
         },
       });
       const updatedUser = await response.json();
-      setUsers(users.map((user) => user.id === updatedUser.id ? updatedUser : user));
       editUserModalRef.current?.close();
+
+      animateEditUser(user.id, () => {
+        setUsers(users.map((user) => user.id === updatedUser.id ? updatedUser : user));
+      });
+      
       return updatedUser;
     } catch {
       throw new Error('Failed to edit user');
@@ -98,8 +133,13 @@ export default function Page() {
       const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
         method: 'DELETE',
       });
-      setUsers(users.filter((user) => user.id !== id));
+
       deleteUserModalRef.current?.close();
+    
+      animateDeleteUser(id, () => {
+        setUsers(users.filter((user) => user.id !== id));
+      });
+
       return response;
     } catch {
       throw new Error('Failed to delete user');
@@ -122,7 +162,7 @@ export default function Page() {
         </TableHeader>
         <TableBody>
           {users.map((user) => (
-            <TableRow key={user.id}>
+            <TableRow id={`user-${user.id}`} key={user.id}>
               <TableCell alignEnd>{user.id}</TableCell>
               <TableCell>{user.name}</TableCell>
               <TableCell>{user.username}</TableCell>

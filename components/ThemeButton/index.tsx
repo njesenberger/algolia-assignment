@@ -9,7 +9,7 @@ export default function ThemeButton() {
 
   useEffect(() => {
     const currentTheme = localStorage.getItem('theme');
-    console.log({ currentTheme })
+    
     if (currentTheme) {
       if (currentTheme === 'dark') {
         document.documentElement.setAttribute('data-theme-dark', '');
