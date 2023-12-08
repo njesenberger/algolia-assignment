@@ -3,7 +3,7 @@
   background-image: var(--neutral-gradient-1);
 
   :global([data-theme-dark]) & {
-    border-color: var(--primary-color-3);
+    border-color: var(--primary-color-4);
     background-image: var(--primary-gradient-2);
   }
 }

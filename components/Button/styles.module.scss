@@ -11,7 +11,7 @@
   will-change: transform, filter;
   
   &.color-primary {
-    border: 1px solid var(--primary-color-3);
+    border: 1px solid var(--primary-color-4);
     background-image: var(--primary-gradient-1);
     color: var(--neutral-color-1);
 
@@ -26,9 +26,20 @@
     color: var(--neutral-color-6);
 
     :global([data-theme-dark]) & {
-      border-color: var(--primary-color-3);
+      border-color: var(--primary-color-4);
       background-image: var(--primary-gradient-4);
       color: var(--neutral-color-1);
+    }
+  }
+
+  &.color-danger {
+    border: 1px solid var(--danger-color-3);
+    background-image: var(--danger-gradient-1);
+    color: var(--neutral-color-1);
+
+    :global([data-theme-dark]) & {
+      border: 1px solid var(--danger-color-1);
+      background-image: var(--danger-gradient-2);
     }
   }
 
@@ -42,7 +53,8 @@
         }
       } 
 
-      &.color-secondary {
+      &.color-secondary,
+      &.color-danger {
         :global([data-theme-dark]) & {
           border-color: var(--neutral-color-1);
         }

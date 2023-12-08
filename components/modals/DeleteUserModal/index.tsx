@@ -23,7 +23,7 @@ const DeleteUserModal = forwardRef<HTMLDialogElement, ModalProps>(
             >
               Cancel
             </Button>
-            <Button onClick={onConfirm}>Delete user</Button>
+            <Button color="danger" onClick={onConfirm}>Delete user</Button>
           </>
         }
       >

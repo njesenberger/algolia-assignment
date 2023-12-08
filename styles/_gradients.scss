@@ -1,9 +1,12 @@
 :root {
   --neutral-gradient-1: linear-gradient(to bottom, var(--neutral-color-1), var(--neutral-color-2));
-  --neutral-gradient-2: linear-gradient(to bottom, #BBD1FF, var(--neutral-color-1));
+  --neutral-gradient-2: linear-gradient(to bottom, var(--primary-color-1), var(--neutral-color-1));
 
-  --primary-gradient-1: linear-gradient(to bottom, var(--primary-color-1), var(--primary-color-2));
-  --primary-gradient-2: linear-gradient(to bottom, var(--primary-color-2), var(--primary-color-3));
-  --primary-gradient-3: linear-gradient(to bottom, var(--neutral-color-6), var(--primary-color-3));
-  --primary-gradient-4: linear-gradient(to bottom, #021055, #003);
+  --primary-gradient-1: linear-gradient(to bottom, var(--primary-color-2), var(--primary-color-3));
+  --primary-gradient-2: linear-gradient(to bottom, var(--primary-color-3), var(--primary-color-4));
+  --primary-gradient-3: linear-gradient(to bottom, var(--neutral-color-6), var(--primary-color-4));
+  --primary-gradient-4: linear-gradient(to bottom, var(--primary-color-5), var(--primary-color-6));
+
+  --danger-gradient-1: linear-gradient(to bottom, var(--danger-color-1), var(--danger-color-2));
+  --danger-gradient-2: linear-gradient(to bottom, var(--danger-color-2), var(--danger-color-3));
 }

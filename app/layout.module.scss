@@ -10,7 +10,7 @@
 	font-variant-numeric: tabular-nums;
 
 	:global([data-theme-dark]) & {
-		background-color: #003;
+		background-color: var(--primary-color-6);
 		color: var(--neutral-color-1);
 	}
 }
