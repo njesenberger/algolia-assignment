@@ -59,16 +59,17 @@ export default function Page() {
   }, []);
 
   const animateEditUser = (id: number, callback: () => void) => {
+    const isDarkTheme = document.documentElement.hasAttribute('data-theme-dark');
     const userRow = document.querySelector(`#user-${id}`);
     gsap.to(userRow, {
-      backgroundColor: '#042077',
+      backgroundColor: isDarkTheme ? '#042077' : '#d6d6e7',
       duration: 0.2,
       clearProps: 'all',
       onComplete: () => {
         callback();
         gsap.to(userRow, {
           duration: 0.2,
-          backgroundColor: '#003',
+          backgroundColor: isDarkTheme ? '#003' : '#fff',
           clearProps: 'all',
         });
       },
