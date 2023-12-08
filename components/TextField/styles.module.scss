@@ -20,4 +20,18 @@
       color: var(--neutral-color-5);
     }
   }
+
+  &::-webkit-contacts-auto-fill-button {
+    transition: background-color .2s;
+    
+    :global([data-theme-dark]) & {
+      background-color: var(--neutral-color-1);
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: var(--primary-color-2);
+      }
+    }
+  }
 }
