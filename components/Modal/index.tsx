@@ -4,6 +4,7 @@ import styles from './styles.module.scss';
 interface ModalProps extends React.HTMLAttributes<HTMLDialogElement> {
   buttons: React.ReactNode;
   title: string;
+  onClose?: () => void;
 }
 
 const Modal = forwardRef<HTMLDialogElement, ModalProps>(

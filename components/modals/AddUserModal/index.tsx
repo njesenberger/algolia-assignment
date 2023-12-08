@@ -1,41 +1,55 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useImperativeHandle, useRef } from 'react';
 import Modal from '@/components/Modal';
 import Button from '@/components/Button';
 import TextField from '@/components/TextField';
 
 import styles from './styles.module.scss';
 
+type Ref = {
+  close: () => void,
+  showModal: () => void,
+} | null;
+
 interface ModalProps extends React.HTMLAttributes<HTMLDialogElement> {
-  onConfirm (user: Omit<User, 'id'>): void;
+  onConfirm (user: Omit<User, 'id'>): Promise<void>;
 }
 
-const AddUserModal = forwardRef<HTMLDialogElement, ModalProps>(
+const AddUserModal = forwardRef<Ref, ModalProps>(
   ({ onConfirm, ...rest }, ref) => {
-    const formRef = React.useRef<HTMLFormElement>(null);
+    const formRef = useRef<HTMLFormElement>(null);
 
-    // @ts-ignore
-    const handleSubmit = async (formData) => {
-      const email = formData.get('email');
-      const name = formData.get('name');
-      const username = formData.get('username');
+    const innerRef = useRef<HTMLDialogElement>(null);
+
+    useImperativeHandle(ref, () => {
+      return {
+        showModal() {
+          innerRef.current?.showModal();
+        },
+        close() {
+          innerRef.current?.close();
+        },
+      };
+    }, []);
+
+    const handleSubmit = async (formData: FormData) => {
+      const email = formData.get('email') as string;
+      const name = formData.get('name') as string;
+      const username = formData.get('username') as string;
       await onConfirm({ username, name, email });
-      // @ts-ignore
-      ref.current.close();
+      innerRef.current?.close();
     };
 
     return (
       <Modal
         title="Add user"
-        ref={ref}
-        // @ts-ignore
-        onClose={() => formRef.current.reset()}
+        ref={innerRef}
+        onClose={() => formRef.current?.reset()}
         {...rest}
         buttons={
           <>
             <Button
               color="secondary"
-              // @ts-ignore
-              onClick={() => ref.current.close()}
+              onClick={() => innerRef.current?.close()}
             >
               Cancel
             </Button>

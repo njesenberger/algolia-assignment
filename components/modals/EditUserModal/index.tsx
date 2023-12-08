@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useState } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import Modal from '@/components/Modal';
 import Button from '@/components/Button';
 import TextField from '@/components/TextField';
@@ -10,10 +10,28 @@ interface ModalProps extends React.HTMLAttributes<HTMLDialogElement> {
   user: User;
 }
 
-const EditUserModal = forwardRef<HTMLDialogElement, ModalProps>(
+type Ref = {
+  close: () => void,
+  showModal: () => void,
+} | null;
+
+const EditUserModal = forwardRef<Ref, ModalProps>(
   ({ onConfirm, user, ...rest }, ref) => {
-    const formRef = React.useRef<HTMLFormElement>(null);
     const [editedUser, setEditedUser] = useState<User>(user);
+
+    const formRef = React.useRef<HTMLFormElement>(null);
+    const innerRef = React.useRef<HTMLDialogElement>(null);
+
+    useImperativeHandle(ref, () => {
+      return {
+        showModal() {
+          innerRef.current?.showModal();
+        },
+        close() {
+          innerRef.current?.close();
+        },
+      };
+    });
 
     useEffect(() => {
       setEditedUser(user);
@@ -21,23 +39,20 @@ const EditUserModal = forwardRef<HTMLDialogElement, ModalProps>(
 
     const handleSubmit = async () => {
       await onConfirm(editedUser);
-      // @ts-ignore
-      ref.current.close();
+      innerRef.current?.close();
     };
 
     return (
       <Modal
         title="Edit user"
-        ref={ref}
-        // @ts-ignore
+        ref={innerRef}
         onClose={() => formRef.current?.reset()}
         {...rest}
         buttons={
           <>
             <Button
               color="secondary"
-              // @ts-ignore
-              onClick={() => ref.current.close()}
+              onClick={() => innerRef.current?.close()}
             >
               Cancel
             </Button>

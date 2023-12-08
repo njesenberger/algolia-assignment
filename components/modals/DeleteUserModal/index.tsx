@@ -1,4 +1,4 @@
-import React, { forwardRef } from 'react';
+import React, { forwardRef, useImperativeHandle } from 'react';
 import Modal from '@/components/Modal';
 import Button from '@/components/Button';
 
@@ -7,19 +7,36 @@ interface ModalProps extends React.HTMLAttributes<HTMLDialogElement> {
   onConfirm: () => void;
 }
 
-const DeleteUserModal = forwardRef<HTMLDialogElement, ModalProps>(
+type Ref = {
+  close: () => void,
+  showModal: () => void,
+} | null;
+
+const DeleteUserModal = forwardRef<Ref, ModalProps>(
   ({ userName, onConfirm, ...rest }, ref) => {
+    const innerRef = React.useRef<HTMLDialogElement>(null);
+
+    useImperativeHandle(ref, () => {
+      return {
+        showModal() {
+          innerRef.current?.showModal();
+        },
+        close() {
+          innerRef.current?.close();
+        },
+      };
+    }, []);
+
     return (
       <Modal
         title={`Delete user ${userName}?`}
-        ref={ref}
+        ref={innerRef}
         {...rest}
         buttons={
           <>
             <Button
               color="secondary"
-              // @ts-ignore
-              onClick={() => ref.current.close()}
+              onClick={() => innerRef.current?.close()}
             >
               Cancel
             </Button>
