@@ -9,7 +9,7 @@ interface TableIconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElem
 export default function TableIconButton({ icon, label, ...rest }: TableIconButtonProps) {
   return (
     <button className={styles['table-icon-button']} type="button" {...rest}>
-      <SvgIcon className={styles['table-icon-button-icon']} icon={icon} />
+      <SvgIcon icon={icon} />
       <span className="visually-hidden">{label}</span>
     </button>
   );

@@ -1,19 +1,13 @@
-@import '@/styles/mixins';
-
-.text-field-label {
-  display: block;
-  padding-bottom: var(--spacing-2);
-  font-size: em(14px);
-  font-weight: var(--font-weight-medium);
-  color: var(--neutral-color-4);
-}
-
 .text-field-input {
   border: 1px solid var(--neutral-color-3);
-  border-radius: 4px;
+  border-radius: var(--border-radius-1);
   padding: var(--spacing-4);
   width: 100%;
   transition: border-color .2s;
+
+  :global([data-theme-dark]) & {
+    border-color: var(--neutral-color-4);
+  }
 
   &:focus-visible {
     border-color: var(--primary-color-1);
@@ -21,5 +15,9 @@
 
   &::placeholder {
     color: var(--neutral-color-3);
+
+    :global([data-theme-dark]) & {
+      color: var(--neutral-color-5);
+    }
   }
 }

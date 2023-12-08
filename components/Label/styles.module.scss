@@ -1,0 +1,11 @@
+.label {
+  display: block;
+  padding-bottom: var(--spacing-2);
+  font-size: em(14px);
+  font-weight: var(--font-weight-medium);
+  color: var(--neutral-color-6);
+
+  :global([data-theme-dark]) & {
+    color: var(--neutral-color-1);
+  }
+}

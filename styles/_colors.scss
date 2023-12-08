@@ -2,9 +2,17 @@
   --neutral-color-1: #fff;
   --neutral-color-2: #f5f5fa;
   --neutral-color-3: #d6d6e7;
-  --neutral-color-4: #23263b;
+  --neutral-color-4: #777aaf;
+  --neutral-color-5: #36395a;
+  --neutral-color-6: #23263b;
 
   --primary-color-1: #003dff;
   --primary-color-2: #022eb9;
   --primary-color-3: #042077;
+  --primary-color-4: #021055;
+  --primary-color-5: #003;
+}
+
+:root[data-theme-dark] {
+  color-scheme: dark;
 }

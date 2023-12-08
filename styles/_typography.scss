@@ -10,11 +10,15 @@ body {
 
 .heading-1,
 .heading-2 {
-	background-image: linear-gradient(to bottom, #23263b, #042077);
+	background-image: var(--primary-gradient-3);
 	background-clip: text;
 	font-family: var(--font-family-heading);
 	font-weight: var(--font-weight-semi-bold);
 	color: transparent;
+
+	[data-theme-dark] & {
+		background-image: var(--neutral-gradient-2);
+	}
 
 	&.heading-1 {
 		font-size: responsive-font-size(20px, 24px);

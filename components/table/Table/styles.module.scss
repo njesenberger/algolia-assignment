@@ -1,10 +1,15 @@
 .table-wrapper {
   border: 1px solid var(--neutral-color-3);
-  border-radius: 6px;
+  border-radius: var(--border-radius-2);
   background-color: var(--neutral-color-1);
   box-shadow: var(--box-shadow-1);
 	overflow: auto;
   white-space: nowrap;
+
+  :global([data-theme-dark]) & {
+    border-color: var(--primary-color-3);
+    background-color: #003;
+  }
 }
 
 .table {

@@ -1,10 +1,14 @@
-.table-icon-button {
+.theme-button {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  z-index: 1;
+  right: var(--spacing-8);
+  bottom: var(--spacing-8);
   border: 1px solid var(--neutral-color-3);
-  border-radius: var(--border-radius-1);
-  padding: var(--spacing-3);
+  border-radius: 50%;
+  padding: var(--spacing-6);
   background-image: var(--neutral-gradient-1);
   box-shadow: var(--box-shadow-1);
   transition-property: border-color, transform, filter;

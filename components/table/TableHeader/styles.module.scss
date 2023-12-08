@@ -1,4 +1,9 @@
 .table-header {
   border-bottom: 1px solid var(--neutral-color-3);
   background-image: var(--neutral-gradient-1);
+
+  :global([data-theme-dark]) & {
+    border-color: var(--primary-color-3);
+    background-image: var(--primary-gradient-2);
+  }
 }

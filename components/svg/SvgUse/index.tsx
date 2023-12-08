@@ -5,7 +5,7 @@ interface SvgUseProps extends React.SVGProps<SVGSVGElement> {
 }
 
 export default function SvgUse({ href, className }: SvgUseProps): JSX.Element {
-  const sprite = require(`@/svg/${href}.svg?sprite`).default
+  const sprite = require(`@/svg/${href}.svg?sprite`).default;
   
   return (
     <svg className={`${styles['svg-use']} ${className ?? ''}`} viewBox={sprite.viewBox} aria-hidden="true">
