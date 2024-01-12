@@ -1,4 +1,4 @@
-# Algolia assignment
+# Algolia front-end developer assignment
 
 Details about the assignment can be found [here](https://beta.algolia.com/candidates/front-end-developer.html), in the [assignment folder](https://github.com/njesenberger/algolia-assignment/tree/main/assignment) or in the following preview:
 
